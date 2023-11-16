@@ -5,8 +5,8 @@ import com.solvd.solvdmaven.exceptions.*;
 import java.util.ArrayList;
 import java.util.List;
 
-//import org.apache.logging.log4j.LogManager;
-//import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /*
 Among the files in this package
@@ -127,10 +127,11 @@ public class MainClass {
         LOGGER.info("\n===================\n");
 
         List<Book> booksForHim = onlyLibrary.searchForBooksByGenre(firstClient.getFavouriteGenre());
-        if (!booksForHim.isEmpty()) {
+        if (!booksForHim.isEmpty() && booksForHim.size()>=1) {
             LOGGER.info("---- BOOK FOUND ----");
-            booksForHim.getFirst().describeItself();
-            onlyLibrary.startLeaseOfBook("10.11.2023", booksForHim.getFirst(), firstClient, 16);
+            Book chosenBook = booksForHim.get(0);
+            chosenBook.describeItself();
+            onlyLibrary.startLeaseOfBook("10.11.2023", chosenBook, firstClient, 16);
             onlyLibrary.printListOfLeases();
         } else {
             LOGGER.info("We don't have books you're looking for.");
