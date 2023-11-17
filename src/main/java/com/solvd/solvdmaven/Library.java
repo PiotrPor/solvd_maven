@@ -118,7 +118,6 @@ public class Library implements IStorageOfBooks, IForManagingBusiness {
             for (int i = 0; i < currentLeases.size(); i++) {
                 LOGGER.info(Integer.toString(i + 1) + ") ");
                 currentLeases.get(i).describeTransaction();
-                LOGGER.info("\n");
             }
         } else {
             LOGGER.info("The are no leases");
@@ -131,7 +130,6 @@ public class Library implements IStorageOfBooks, IForManagingBusiness {
             for (int i = 0; i < listOfSales.size(); i++) {
                 LOGGER.info(Integer.toString(i + 1) + ") ");
                 listOfSales.get(i).describeTransaction();
-                LOGGER.info("\n");
             }
         } else {
             LOGGER.info("Nothing has been sold");
