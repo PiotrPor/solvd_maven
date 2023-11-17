@@ -39,6 +39,7 @@ build/
 
 ### added by me ###
 out/
+lib/
 !**/src/main/**/out/
 !**/src/test/**/out/
 .idea/
