@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Configuration name="ConfigTest" status="WARN">
+    <Properties>
+        <Property name="filename">./logs</Property>
+    </Properties>
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%msg%n"/>
+        </Console>
+        <Console name="ConsoleDetail" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{HH:mm:ss.SSSS} [%t] %-5level %logger{36} - %msg%n"/>
+        </Console>
+        <File name="LogFile" filename="${filename}/execlog.log">
+            <PatternLayout>
+                <pattern>"%d{HH:mm:ss.SSSS} [%t] %-5level %logger{36} - %msg%n"</pattern>
+            </PatternLayout>
+        </File>
+    </Appenders>
+    <Loggers>
+        <Logger name="DebugLogger" level="debug">
+            <AppenderRef ref="ConsoleDetail"/>
+            <AppenderRef ref="LogFile"/>
+        </Logger>
+        <Root level="info">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="LogFile"/>
+        </Root>
+    </Loggers>
+</Configuration>
