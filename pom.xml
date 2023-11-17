@@ -16,14 +16,14 @@
           <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
          -->
         <log4j-version>2.21.1</log4j-version>
-        <maven-compiler-version>3.9.2</maven-compiler-version>
+        <maven-compiler-version>3.9.5</maven-compiler-version>
     </properties>
 
     <dependencies>
         <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-core</artifactId>
-            <version>${log4j-version}</version>
+            <groupId>org.apache</groupId>
+            <artifactId>log4j</artifactId>
+            <version>2.21.1</version>
         </dependency>
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
