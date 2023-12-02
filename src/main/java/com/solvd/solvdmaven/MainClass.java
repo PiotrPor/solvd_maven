@@ -1,6 +1,7 @@
 package com.solvd.solvdmaven;
 
 import com.solvd.solvdmaven.exceptions.*;
+import com.solvd.solvdmaven.enums.LiteratureGenre;
 
 import java.util.ArrayList;
 import java.util.List;

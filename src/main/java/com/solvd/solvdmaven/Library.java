@@ -3,6 +3,7 @@ package com.solvd.solvdmaven;
 import com.solvd.solvdmaven.interfaces.IStorageOfBooks;
 import com.solvd.solvdmaven.interfaces.IForManagingBusiness;
 import com.solvd.solvdmaven.exceptions.NonexistentIndexAccessedException;
+import com.solvd.solvdmaven.enums.LiteratureGenre;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,5 +1,6 @@
 package com.solvd.solvdmaven;
 
+import com.solvd.solvdmaven.enums.LiteratureGenre;
 import com.solvd.solvdmaven.interfaces.IPurchasable;
 import com.solvd.solvdmaven.exceptions.RemovingTitleException;
 import com.solvd.solvdmaven.exceptions.NegativeCostException;

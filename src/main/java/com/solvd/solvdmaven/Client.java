@@ -1,5 +1,7 @@
 package com.solvd.solvdmaven;
 
+import com.solvd.solvdmaven.enums.LiteratureGenre;
+
 public final class Client extends Person {
     private int clientNumber;
     private LiteratureGenre favouriteGenre;

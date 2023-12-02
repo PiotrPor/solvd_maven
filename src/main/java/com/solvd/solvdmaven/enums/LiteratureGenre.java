@@ -1,4 +1,4 @@
-package com.solvd.solvdmaven;
+package com.solvd.solvdmaven.enums;
 
 public enum LiteratureGenre {
     HISTORY,

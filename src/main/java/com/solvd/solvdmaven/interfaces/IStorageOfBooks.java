@@ -1,7 +1,7 @@
 package com.solvd.solvdmaven.interfaces;
 
 import com.solvd.solvdmaven.Book;
-import com.solvd.solvdmaven.LiteratureGenre;
+import com.solvd.solvdmaven.enums.LiteratureGenre;
 
 import java.util.List;
 

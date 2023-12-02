@@ -2,6 +2,7 @@ package com.solvd.solvdmaven;
 
 import com.solvd.solvdmaven.exceptions.WrongIsbnSetException;
 import com.solvd.solvdmaven.exceptions.RemovingAuthorException;
+import com.solvd.solvdmaven.enums.LiteratureGenre;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
