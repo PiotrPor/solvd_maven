@@ -63,21 +63,15 @@ public class MainClass {
             thirdBook.setPrice(21.5f); //NegativeCostException
             thirdBook.setAuthor("Rafal Kosik"); //RemovingAuthorException
             thirdBook.setISBN("9788361187127"); //WrongIsbnSetException
-        } catch(RemovingTitleException e1) {
+        } catch(RemovingTitleException | RemovingAuthorException e1) {
             thereWasAnException = true;
             LOGGER.warn(e1.getMessage());
-        } catch(NegativeCostException e2) {
+        } catch(NegativeCostException | WrongIsbnSetException e2) {
             thereWasAnException = true;
             LOGGER.warn("Exception: "+ e2.getMessage());
-        } catch(RemovingAuthorException e3) {
+        } catch(Exception e3) {
             thereWasAnException = true;
-            LOGGER.warn(e3.getMessage());
-        } catch(WrongIsbnSetException e4) {
-            thereWasAnException = true;
-            LOGGER.warn("Exception: "+ e4.getMessage());
-        } catch(Exception e5) {
-            thereWasAnException = true;
-            LOGGER.warn("Noncustom exception when adding book: "+ e5.getMessage());
+            LOGGER.warn("Noncustom exception when adding book: "+ e3.getMessage());
         }
 
         if (!thereWasAnException) {
@@ -127,7 +121,7 @@ public class MainClass {
         LOGGER.info("\n===================\n");
 
         List<Book> booksForHim = onlyLibrary.searchForBooksByGenre(firstClient.getFavouriteGenre());
-        if (!booksForHim.isEmpty() && booksForHim.size()>=1) {
+        if (!booksForHim.isEmpty()) {
             LOGGER.info("---- BOOK FOUND ----");
             Book chosenBook = booksForHim.get(0);
             chosenBook.describeItself();
@@ -139,9 +133,9 @@ public class MainClass {
 
         String titleOfBookToLease = "Historia pracy. Nowe dzieje ludzkosci";
         if(onlyLibrary.startLeaseOfBook("14.11.2023",titleOfBookToLease,secondClient,14)) {
-            LOGGER.info("Has leased \""+titleOfBookToLease+"\" to client no. "+ Integer.toString(secondClient.getClientNumber()));
+            LOGGER.info("Has leased \""+titleOfBookToLease+"\" to client no. "+ secondClient.getClientNumber());
         } else {
-            LOGGER.info("Failed to lease \""+titleOfBookToLease+"\" to client no. "+ Integer.toString(secondClient.getClientNumber()));
+            LOGGER.info("Failed to lease \""+titleOfBookToLease+"\" to client no. "+ secondClient.getClientNumber());
         }
 
         LOGGER.info("Program finished its tasks");
