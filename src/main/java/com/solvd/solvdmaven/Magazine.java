@@ -2,6 +2,7 @@ package com.solvd.solvdmaven;
 
 import com.solvd.solvdmaven.enums.LiteratureGenre;
 
+import com.solvd.solvdmaven.enums.LiteraturePieceType;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -11,11 +12,13 @@ public class Magazine extends LiteraryPiece {
 
     public Magazine() {
         super();
+        theirType = LiteraturePieceType.MAGAZINE;
         issueNumber = 1;
     }
 
     public Magazine(String newTitle, String newPublish, String whenPublished, LiteratureGenre whatGenre, float newPrice, int whatNumber) {
         super(newTitle, newPublish, whenPublished, whatGenre, newPrice);
+        theirType = LiteraturePieceType.MAGAZINE;
         issueNumber = whatNumber;
     }
 

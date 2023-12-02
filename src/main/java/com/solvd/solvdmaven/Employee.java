@@ -1,5 +1,6 @@
 package com.solvd.solvdmaven;
 
+import com.solvd.solvdmaven.enums.TypeOfPerson;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -10,12 +11,14 @@ public class Employee extends Person {
 
     public Employee() {
         super();
+        typeOfThem = TypeOfPerson.EMPLOYEE;
         employeeNumber = 0;
         salary = 3000f;
     }
 
     public Employee(String nm, String sn, int epnb, float slr) {
         super(nm, sn);
+        typeOfThem = TypeOfPerson.EMPLOYEE;
         employeeNumber = epnb;
         salary = slr;
     }

@@ -1,6 +1,7 @@
 package com.solvd.solvdmaven;
 
 import com.solvd.solvdmaven.enums.LiteratureGenre;
+import com.solvd.solvdmaven.enums.TypeOfPerson;
 
 public final class Client extends Person {
     private int clientNumber;
@@ -8,12 +9,14 @@ public final class Client extends Person {
 
     public Client() {
         super();
+        typeOfThem = TypeOfPerson.CLIENT;
         clientNumber = 0;
         favouriteGenre = LiteratureGenre.OTHER;
     }
 
     public Client(String theirName, String theirSurname, int theirNumber, LiteratureGenre theirFavourite) {
         super(theirName, theirSurname);
+        typeOfThem = TypeOfPerson.CLIENT;
         clientNumber = theirNumber;
         favouriteGenre = theirFavourite;
     }

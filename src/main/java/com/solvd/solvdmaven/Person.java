@@ -1,6 +1,7 @@
 package com.solvd.solvdmaven;
 
 import com.solvd.solvdmaven.interfaces.IHasName;
+import com.solvd.solvdmaven.enums.TypeOfPerson;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -8,16 +9,19 @@ import org.apache.logging.log4j.Logger;
 public class Person implements IHasName {
     protected String name;
     protected String surname;
+    protected TypeOfPerson typeOfThem;
     private static final Logger LOGGER = LogManager.getLogger(Person.class);
 
     public Person() {
         name = "John";
         surname = "Doe";
+        typeOfThem = TypeOfPerson.OTHER;
     }
 
     public Person(String fn, String sur) {
         name = fn;
         surname = sur;
+        typeOfThem = TypeOfPerson.OTHER;
     }
 
     public void setName(String newName) {

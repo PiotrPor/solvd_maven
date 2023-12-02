@@ -1,6 +1,7 @@
 package com.solvd.solvdmaven;
 
 import com.solvd.solvdmaven.enums.LiteratureGenre;
+import com.solvd.solvdmaven.enums.LiteraturePieceType;
 import com.solvd.solvdmaven.interfaces.IPurchasable;
 import com.solvd.solvdmaven.exceptions.RemovingTitleException;
 import com.solvd.solvdmaven.exceptions.NegativeCostException;
@@ -14,6 +15,7 @@ abstract public class LiteraryPiece implements IPurchasable {
     public String publishDate;
     protected LiteratureGenre genre;
     protected float price;
+    protected LiteraturePieceType theirType;
     private static final Logger LOGGER = LogManager.getLogger(LiteraryPiece.class);
 
     public LiteraryPiece() {
@@ -22,6 +24,7 @@ abstract public class LiteraryPiece implements IPurchasable {
         publishDate = "31-12-1900";
         genre = LiteratureGenre.OTHER;
         price = 0f;
+        theirType = LiteraturePieceType.OTHER;
     }
 
     public LiteraryPiece(String newTitle, String newPublish, String whenPublished, LiteratureGenre whatGenre, float newPrice) {
@@ -30,6 +33,7 @@ abstract public class LiteraryPiece implements IPurchasable {
         publishDate = whenPublished;
         genre = whatGenre;
         price = newPrice;
+        theirType = LiteraturePieceType.OTHER;
     }
 
     public void setTitle(String newTitle) throws RemovingTitleException {

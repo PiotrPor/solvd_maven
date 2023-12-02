@@ -1,5 +1,6 @@
 package com.solvd.solvdmaven;
 
+import com.solvd.solvdmaven.enums.LiteraturePieceType;
 import com.solvd.solvdmaven.exceptions.WrongIsbnSetException;
 import com.solvd.solvdmaven.exceptions.RemovingAuthorException;
 import com.solvd.solvdmaven.enums.LiteratureGenre;
@@ -15,12 +16,14 @@ public class Book extends LiteraryPiece {
 
     public Book() {
         super();
+        theirType = LiteraturePieceType.BOOK;
         author = " ";
         isbn = DEFAULT_ISBN;
     }
 
     public Book(String newTitle, String newPublish, String whenPublished, LiteratureGenre whatGenre, float newPrice, String itsAuthor, String isbnNumber) {
         super(newTitle, newPublish, whenPublished, whatGenre, newPrice);
+        theirType = LiteraturePieceType.BOOK;
         author = itsAuthor;
         if (isbnNumber.length() == 10 || isbnNumber.length() == 13) {
             isbn = isbnNumber;
