@@ -26,6 +26,7 @@ public class MainClass {
     private static final Logger LOGGER = LogManager.getLogger(MainClass.class);
 
     public static void main(String[] args) {
+        LOGGER.info("##\n##\nStarting anew\n##\n##");
         LOGGER.info("main() starts running");
         List<Employee> employeesForLibrary = new ArrayList<>();
         List<Book> booksForLibrary = new ArrayList<>();
