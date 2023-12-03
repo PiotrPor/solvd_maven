@@ -12,10 +12,10 @@ import org.apache.logging.log4j.Logger;
 /*
 Among the files in this package
   "MainClass.java" contains the main()
-  "LiteratureGenre.java" is an enumerator
   12 files are classes
   5 files are interfaces
   5 files are custom exceptions
+  4 files are enumerators
 */
 
 public class MainClass {
@@ -86,7 +86,7 @@ public class MainClass {
                 "PC Format",
                 "Fantasyexpo",
                 "01.03.2021",
-                LiteratureGenre.TECHNOLOGY,
+                LiteratureGenre.TECH,
                 9.5f,
                 247));
         magazinesForLibrary.add(new Magazine(

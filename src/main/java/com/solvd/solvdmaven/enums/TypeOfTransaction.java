@@ -1,7 +1,18 @@
 package com.solvd.solvdmaven.enums;
 
 public enum TypeOfTransaction {
-    SALE,
-    LEASE,
-    OTHER
+    SALE("Sale"),
+    LEASE("Lease"),
+    OTHER("Other");
+
+    private final String transTypeName;
+
+    TypeOfTransaction(String name) {
+        transTypeName = name;
+    }
+
+    @Override
+    public String toString() {
+        return transTypeName;
+    }
 }
