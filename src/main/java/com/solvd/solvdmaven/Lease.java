@@ -1,5 +1,6 @@
 package com.solvd.solvdmaven;
 
+import com.solvd.solvdmaven.enums.TypeOfTransaction;
 import com.solvd.solvdmaven.interfaces.IForTransaction;
 
 import org.apache.logging.log4j.LogManager;
@@ -11,11 +12,13 @@ public class Lease extends GivingLiterature implements IForTransaction {
 
     public Lease() {
         super();
+        itsType = TypeOfTransaction.LEASE;
         durationInDays = 14;
     }
 
     public Lease(String when, LiteraryPiece lp, int cn, int dur) {
         super(when, lp, cn);
+        itsType = TypeOfTransaction.LEASE;
         durationInDays = dur;
     }
 

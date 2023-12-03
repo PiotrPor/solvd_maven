@@ -69,5 +69,7 @@ abstract public class LiteraryPiece implements IPurchasable {
         return price;
     }
 
+    public LiteraturePieceType getItsType() {return theirType;}
+
     abstract public void describeItself();
 }

@@ -1,5 +1,6 @@
 package com.solvd.solvdmaven;
 
+import com.solvd.solvdmaven.enums.TypeOfTransaction;
 import com.solvd.solvdmaven.interfaces.IForTransaction;
 import com.solvd.solvdmaven.exceptions.NegativeCostException;
 
@@ -12,11 +13,13 @@ public class Sale extends GivingLiterature implements IForTransaction {
 
     public Sale() {
         super();
+        itsType = TypeOfTransaction.SALE;
         cost = 1.00f;
     }
 
     public Sale(String when, LiteraryPiece lp, int cn) {
         super(when, lp, cn);
+        itsType = TypeOfTransaction.SALE;
         cost = lp.getPrice();
     }
 

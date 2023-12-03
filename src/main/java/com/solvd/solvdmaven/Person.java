@@ -48,6 +48,8 @@ public class Person implements IHasName {
         return surname;
     }
 
+    public TypeOfPerson getTheirType() {return typeOfThem;}
+
     //overriding methods from "Object" base class
 
     @Override
