@@ -8,4 +8,6 @@ public class PlaceOfService {
     public PlaceOfService() {
         type = ServiceTypes.OTHER;
     }
+
+    public ServiceTypes getTypeOfService() {return type;}
 }
