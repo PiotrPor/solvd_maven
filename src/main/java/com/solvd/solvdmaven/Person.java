@@ -3,6 +3,8 @@ package com.solvd.solvdmaven;
 import com.solvd.solvdmaven.interfaces.IHasName;
 import com.solvd.solvdmaven.enums.TypeOfPerson;
 
+import java.util.function.BiConsumer;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -10,18 +12,21 @@ public class Person implements IHasName {
     protected String name;
     protected String surname;
     protected TypeOfPerson typeOfThem;
+    protected BiConsumer<String,String> setNameAndSurname;
     private static final Logger LOGGER = LogManager.getLogger(Person.class);
 
     public Person() {
         name = "John";
         surname = "Doe";
         typeOfThem = TypeOfPerson.OTHER;
+        setNameAndSurname = (newN,newS) -> {name=newS; surname=newS;};
     }
 
     public Person(String fn, String sur) {
         name = fn;
         surname = sur;
         typeOfThem = TypeOfPerson.OTHER;
+        setNameAndSurname = (newN,newS) -> {name=newS; surname=newS;};
     }
 
     public void setName(String newName) {
@@ -46,6 +51,18 @@ public class Person implements IHasName {
 
     public String getSurname() {
         return surname;
+    }
+
+    public void setIdentity(String longString) {
+        String newName, newSurname;
+        int whereSpace = longString.indexOf(" ");
+        newName = longString.substring(0, whereSpace);
+        newSurname = longString.substring(whereSpace+1);
+        setNameAndSurname.accept(newName,newSurname);
+    }
+
+    public String getIdentity() {
+        return (name + " " + surname);
     }
 
     public TypeOfPerson getTheirType() {return typeOfThem;}
