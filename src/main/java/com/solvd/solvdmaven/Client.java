@@ -2,6 +2,9 @@ package com.solvd.solvdmaven;
 
 import com.solvd.solvdmaven.enums.LiteratureGenre;
 import com.solvd.solvdmaven.enums.TypeOfPerson;
+import com.solvd.solvdmaven.interfaces.IFuncForLambdas;
+
+import java.util.concurrent.atomic.AtomicInteger;
 
 public final class Client extends Person {
     private int clientNumber;
@@ -22,7 +25,11 @@ public final class Client extends Person {
     }
 
     public void setClientNumber(int newNumber) {
-        clientNumber = newNumber;
+        AtomicInteger atomInt = new AtomicInteger();
+        IFuncForLambdas<Integer> iffl = (someInt) -> {atomInt.set(someInt);};
+        iffl.setValue(newNumber);
+        this.clientNumber = atomInt.get();
+        //clientNumber = newNumber;
     }
 
     public int getClientNumber() {
