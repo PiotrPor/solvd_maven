@@ -5,12 +5,15 @@ import com.solvd.solvdmaven.exceptions.WrongIsbnSetException;
 import com.solvd.solvdmaven.exceptions.RemovingAuthorException;
 import com.solvd.solvdmaven.enums.LiteratureGenre;
 
+import java.util.function.Function;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class Book extends LiteraryPiece {
     private String author;
     private String isbn; //without letters "ISBN" at the beginning, only digits
+    private Function<String,Boolean> testingIsbnLength;
     public static final String DEFAULT_ISBN = "0000000000000";
     private static final Logger LOGGER = LogManager.getLogger(Book.class);
 
@@ -19,13 +22,14 @@ public class Book extends LiteraryPiece {
         theirType = LiteraturePieceType.BOOK;
         author = " ";
         isbn = DEFAULT_ISBN;
+        testingIsbnLength = (givenIsbn) -> {return (givenIsbn.length() == 10 || givenIsbn.length() == 13);};
     }
 
     public Book(String newTitle, String newPublish, String whenPublished, LiteratureGenre whatGenre, float newPrice, String itsAuthor, String isbnNumber) {
         super(newTitle, newPublish, whenPublished, whatGenre, newPrice);
         theirType = LiteraturePieceType.BOOK;
         author = itsAuthor;
-        if (isbnNumber.length() == 10 || isbnNumber.length() == 13) {
+        if (testingIsbnLength.apply(isbnNumber)) {
             isbn = isbnNumber;
         } else {
             isbn = DEFAULT_ISBN;
@@ -46,7 +50,7 @@ public class Book extends LiteraryPiece {
     }
 
     public void setISBN(String newISBN) throws WrongIsbnSetException {
-        if (newISBN.length() == 10 || newISBN.length() == 13) {
+        if (testingIsbnLength.apply(newISBN)) {
             isbn = newISBN;
         } else {
             throw new WrongIsbnSetException("ISBN code must have either 10 or 13 digits");

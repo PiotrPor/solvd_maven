@@ -9,6 +9,8 @@ import com.solvd.solvdmaven.enums.LiteratureGenre;
 import java.util.ArrayList;
 import java.util.List;
 
+import java.util.function.Consumer;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -19,6 +21,7 @@ public class Library extends PlaceOfService implements IStorageOfBooks, IForMana
     public List<Lease> currentLeases;
     public MyLinkedListWithGeneric<Sale> listOfSales;
     private float income;
+    private Consumer<Float> addToIncome;
     private static final Logger LOGGER = LogManager.getLogger(Library.class);
 
     static {
@@ -32,8 +35,9 @@ public class Library extends PlaceOfService implements IStorageOfBooks, IForMana
         ourBooks = new ArrayList<>();
         ourMagazines = new ArrayList<>();
         currentLeases = new ArrayList<>();
-        listOfSales = new MyLinkedListWithGeneric<Sale>();
+        listOfSales = new MyLinkedListWithGeneric<>();
         income = 0f;
+        addToIncome = (amount) -> {this.income+=amount;};
     }
 
     //constructor with parameters had to be removed
@@ -50,8 +54,8 @@ public class Library extends PlaceOfService implements IStorageOfBooks, IForMana
         this.ourMagazines.add(m);
     }
 
-    public void addToIncome(float toBeAdded) {
-        income += toBeAdded;
+    public void increaseIncome(float toBeAdded) {
+        addToIncome.accept(toBeAdded);
     }
 
     public float getIncome() {

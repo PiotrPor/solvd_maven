@@ -6,6 +6,8 @@ import com.solvd.solvdmaven.interfaces.IPurchasable;
 import com.solvd.solvdmaven.exceptions.RemovingTitleException;
 import com.solvd.solvdmaven.exceptions.NegativeCostException;
 
+import java.util.function.Supplier;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -16,6 +18,7 @@ abstract public class LiteraryPiece implements IPurchasable {
     protected LiteratureGenre genre;
     protected float price;
     protected LiteraturePieceType theirType;
+    public Supplier<Float> returnValueOfPrice;
     private static final Logger LOGGER = LogManager.getLogger(LiteraryPiece.class);
 
     public LiteraryPiece() {
@@ -25,6 +28,7 @@ abstract public class LiteraryPiece implements IPurchasable {
         genre = LiteratureGenre.OTHER;
         price = 0f;
         theirType = LiteraturePieceType.OTHER;
+        returnValueOfPrice = () -> {return this.price;};
     }
 
     public LiteraryPiece(String newTitle, String newPublish, String whenPublished, LiteratureGenre whatGenre, float newPrice) {
@@ -34,6 +38,7 @@ abstract public class LiteraryPiece implements IPurchasable {
         genre = whatGenre;
         price = newPrice;
         theirType = LiteraturePieceType.OTHER;
+        returnValueOfPrice = () -> {return this.price;};
     }
 
     public void setTitle(String newTitle) throws RemovingTitleException {
@@ -66,7 +71,7 @@ abstract public class LiteraryPiece implements IPurchasable {
     }
 
     public float getPrice() {
-        return price;
+        return returnValueOfPrice.get();
     }
 
     public LiteraturePieceType getItsType() {return theirType;}
