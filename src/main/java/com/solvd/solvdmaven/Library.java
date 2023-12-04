@@ -1,5 +1,6 @@
 package com.solvd.solvdmaven;
 
+import com.solvd.solvdmaven.enums.ServiceTypes;
 import com.solvd.solvdmaven.interfaces.IStorageOfBooks;
 import com.solvd.solvdmaven.interfaces.IForManagingBusiness;
 import com.solvd.solvdmaven.exceptions.NonexistentIndexAccessedException;
@@ -11,7 +12,7 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class Library implements IStorageOfBooks, IForManagingBusiness {
+public class Library extends PlaceOfService implements IStorageOfBooks, IForManagingBusiness {
     public List<Employee> listOfEmployees;
     public List<Book> ourBooks;
     public List<Magazine> ourMagazines;
@@ -25,6 +26,8 @@ public class Library implements IStorageOfBooks, IForManagingBusiness {
     }
 
     public Library() {
+        super();
+        this.type = ServiceTypes.LIBRARY;
         listOfEmployees = new ArrayList<>();
         ourBooks = new ArrayList<>();
         ourMagazines = new ArrayList<>();

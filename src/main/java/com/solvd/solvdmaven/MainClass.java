@@ -12,10 +12,10 @@ import org.apache.logging.log4j.Logger;
 /*
 Among the files in this package
   "MainClass.java" contains the main()
-  12 files are classes
+  13 files are classes
   5 files are interfaces
   5 files are custom exceptions
-  4 files are enumerators
+  5 files are enumerators
 */
 
 public class MainClass {
