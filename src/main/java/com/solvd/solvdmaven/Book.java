@@ -22,13 +22,14 @@ public class Book extends LiteraryPiece {
         theirType = LiteraturePieceType.BOOK;
         author = " ";
         isbn = DEFAULT_ISBN;
-        testingIsbnLength = (givenIsbn) -> {return (givenIsbn.length() == 10 || givenIsbn.length() == 13);};
+        testingIsbnLength = (givenISBN) -> {return (givenISBN.length() == 10 || givenISBN.length() == 13);};
     }
 
     public Book(String newTitle, String newPublish, String whenPublished, LiteratureGenre whatGenre, float newPrice, String itsAuthor, String isbnNumber) {
         super(newTitle, newPublish, whenPublished, whatGenre, newPrice);
         theirType = LiteraturePieceType.BOOK;
         author = itsAuthor;
+        testingIsbnLength = (givenISBN) -> {return (givenISBN.length() == 10 || givenISBN.length() == 13);};
         if (testingIsbnLength.apply(isbnNumber)) {
             isbn = isbnNumber;
         } else {
