@@ -107,17 +107,9 @@ public class MainClass {
         int i;
         Library onlyLibrary = new Library();
 
-        for(i=0; i<employeesForLibrary.size();i++) {
-            onlyLibrary.addEmployeeToList(employeesForLibrary.get(i));
-        }
-
-        for(i=0; i<booksForLibrary.size();i++) {
-            onlyLibrary.addBookToList(booksForLibrary.get(i));
-        }
-
-        for(i=0; i<magazinesForLibrary.size();i++) {
-            onlyLibrary.addMagazineToList(magazinesForLibrary.get(i));
-        }
+        employeesForLibrary.forEach(em -> onlyLibrary.addEmployeeToList(em));
+        booksForLibrary.forEach(b -> onlyLibrary.addBookToList(b));
+        magazinesForLibrary.forEach(m -> onlyLibrary.addMagazineToList(m));
 
         //---------------------
         LOGGER.info("\n===================\n");

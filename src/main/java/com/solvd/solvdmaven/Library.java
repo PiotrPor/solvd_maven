@@ -64,21 +64,19 @@ public class Library extends PlaceOfService implements IStorageOfBooks, IForMana
 
     public List<Book> searchForBooksByTitle(String searchedTitle) {
         List<Book> foundBooks = new ArrayList<>();
-        for (int i = 0; i < ourBooks.size(); i++) {
-            if (ourBooks.get(i).title.equals(searchedTitle)) {
-                foundBooks.add(ourBooks.get(i));
-            }
-        }
+        ourBooks
+                .stream()
+                .filter(b -> b.getTitle().equals(searchedTitle))
+                .forEach(b -> foundBooks.add(b));
         return foundBooks;
     }
 
     public List<Book> searchForBooksByGenre(LiteratureGenre searchedGenre) {
         List<Book> foundBooks = new ArrayList<>();
-        for (int i = 0; i < ourBooks.size(); i++) {
-            if (ourBooks.get(i).getGenre() == searchedGenre) {
-                foundBooks.add(ourBooks.get(i));
-            }
-        }
+        ourBooks
+                .stream()
+                .filter(b -> b.getGenre() == searchedGenre)
+                .forEach(b -> foundBooks.add(b));
         return foundBooks;
     }
 
