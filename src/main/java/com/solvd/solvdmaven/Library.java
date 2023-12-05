@@ -3,7 +3,6 @@ package com.solvd.solvdmaven;
 import com.solvd.solvdmaven.enums.ServiceTypes;
 import com.solvd.solvdmaven.interfaces.IStorageOfBooks;
 import com.solvd.solvdmaven.interfaces.IForManagingBusiness;
-import com.solvd.solvdmaven.exceptions.NonexistentIndexAccessedException;
 import com.solvd.solvdmaven.enums.LiteratureGenre;
 
 import java.util.ArrayList;
@@ -40,7 +39,7 @@ public class Library extends PlaceOfService implements IStorageOfBooks, IForMana
         addToIncome = (amount) -> {this.income+=amount;};
     }
 
-    //constructor with parameters had to be removed
+    //there's no constructor with parameters
 
     public void addEmployeeToList(Employee e) {
         this.listOfEmployees.add(e);

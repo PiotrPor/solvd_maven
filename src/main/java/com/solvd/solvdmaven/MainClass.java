@@ -104,7 +104,6 @@ public class MainClass {
 
         //-------------------
 
-        int i;
         Library onlyLibrary = new Library();
 
         employeesForLibrary.forEach(em -> onlyLibrary.addEmployeeToList(em));
