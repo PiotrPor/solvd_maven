@@ -9,12 +9,16 @@ import java.util.concurrent.atomic.AtomicInteger;
 public final class Client extends Person {
     private int clientNumber;
     private LiteratureGenre favouriteGenre;
+    private AtomicInteger ourAtomInt;
+    IFuncForLambdas<Integer> iffl;
 
     public Client() {
         super();
         typeOfThem = TypeOfPerson.CLIENT;
         clientNumber = 0;
         favouriteGenre = LiteratureGenre.OTHER;
+        ourAtomInt = new AtomicInteger();
+        iffl = (someInt) -> {ourAtomInt.set(someInt);};
     }
 
     public Client(String theirName, String theirSurname, int theirNumber, LiteratureGenre theirFavourite) {
@@ -22,14 +26,13 @@ public final class Client extends Person {
         typeOfThem = TypeOfPerson.CLIENT;
         clientNumber = theirNumber;
         favouriteGenre = theirFavourite;
+        ourAtomInt = new AtomicInteger();
+        iffl = (someInt) -> {ourAtomInt.set(someInt);};
     }
 
     public void setClientNumber(int newNumber) {
-        AtomicInteger atomInt = new AtomicInteger();
-        IFuncForLambdas<Integer> iffl = (someInt) -> {atomInt.set(someInt);};
         iffl.setValue(newNumber);
-        this.clientNumber = atomInt.get();
-        //clientNumber = newNumber;
+        this.clientNumber = ourAtomInt.get();
     }
 
     public int getClientNumber() {
