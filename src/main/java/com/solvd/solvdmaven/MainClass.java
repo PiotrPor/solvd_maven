@@ -5,6 +5,7 @@ import com.solvd.solvdmaven.enums.LiteratureGenre;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.lang.reflect.*;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -100,7 +101,18 @@ public class MainClass {
         //-------------------
 
         Client firstClient = new Client("Andrew", "Bookeater", 2, LiteratureGenre.CRIME);
-        Client secondClient = new Client("John","Kowalsky",3,LiteratureGenre.SCIFI);
+
+        //Client secondClient = new Client("John","Kowalsky",3,LiteratureGenre.SCIFI);
+        Client secondClient;
+        try {
+            String fullClassName = "com.solvd.solvdmaven.Client";
+            Class<Client> classOfClient = (Class<Client>) Class.forName(fullClassName);
+            Constructor<Client> constructorForClient = classOfClient.getDeclaredConstructor(String.class, String.class, int.class, LiteratureGenre.class);
+            secondClient = constructorForClient.newInstance("John","Kowalsky",3,LiteratureGenre.SCIFI);
+        } catch (ClassNotFoundException | NoSuchMethodException | InstantiationException | IllegalAccessException |
+                 InvocationTargetException e) {
+            throw new RuntimeException(e);
+        }
 
         //-------------------
 
