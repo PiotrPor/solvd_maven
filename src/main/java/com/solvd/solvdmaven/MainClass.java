@@ -105,24 +105,20 @@ public class MainClass {
         //Client secondClient = new Client("John","Kowalsky",3,LiteratureGenre.SCIFI);
         Client secondClient;
         try {
-            String fullClassName = "com.solvd.solvdmaven.Client";
-            Class<Client> classOfClient = (Class<Client>) Class.forName(fullClassName);
-            Constructor<Client> constructorForClient = classOfClient.getDeclaredConstructor(String.class, String.class, int.class, LiteratureGenre.class);
-            //Field fieldWithSurname = classOfClient.getDeclaredField("surname");
+            String pathToClasses = "com.solvd.solvdmaven.";
+            Class<Client> classOfClient = (Class<Client>) Class.forName(pathToClasses +"Client");
+            Class<Person> classOfPerson = (Class<Person>) Class.forName(pathToClasses +"Person");
 
-            Field[] hisFields = classOfClient.getDeclaredFields();
+            Constructor<Client> constructorForClient = classOfClient.getDeclaredConstructor(String.class, String.class, int.class, LiteratureGenre.class);
+            Field fieldWithSurname = classOfPerson.getDeclaredField("surname");
+            Method forSettingNumber = classOfClient.getDeclaredMethod("setClientNumber", int.class);
 
             secondClient = constructorForClient.newInstance("John","Kowalsky",3,LiteratureGenre.SCIFI);
 
-            for(int i = 0; i<hisFields.length; i++) {
-                if(hisFields[i].getName().equals("surname")) {
-                    Field fieldWithSurname = hisFields[i];
-                    fieldWithSurname.setAccessible(true);
-                    fieldWithSurname.set(secondClient, "Bigeye");
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException | NoSuchMethodException | InstantiationException | IllegalAccessException |
+            fieldWithSurname.setAccessible(true);
+            fieldWithSurname.set(secondClient, "Bigeye");
+            forSettingNumber.invoke(secondClient, 10);
+        } catch (ClassNotFoundException | NoSuchFieldException | NoSuchMethodException | InstantiationException | IllegalAccessException |
                  InvocationTargetException e) {
             throw new RuntimeException(e);
         }
