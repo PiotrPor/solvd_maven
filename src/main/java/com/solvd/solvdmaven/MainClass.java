@@ -5,6 +5,7 @@ import com.solvd.solvdmaven.enums.LiteratureGenre;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.lang.reflect.*;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -100,24 +101,35 @@ public class MainClass {
         //-------------------
 
         Client firstClient = new Client("Andrew", "Bookeater", 2, LiteratureGenre.CRIME);
-        Client secondClient = new Client("John","Kowalsky",3,LiteratureGenre.SCIFI);
+
+        //Client secondClient = new Client("John","Kowalsky",3,LiteratureGenre.SCIFI);
+        Client secondClient;
+        try {
+            String pathToClasses = "com.solvd.solvdmaven.";
+            Class<Client> classOfClient = (Class<Client>) Class.forName(pathToClasses +"Client");
+            Class<Person> classOfPerson = (Class<Person>) Class.forName(pathToClasses +"Person");
+
+            Constructor<Client> constructorForClient = classOfClient.getDeclaredConstructor(String.class, String.class, int.class, LiteratureGenre.class);
+            Field fieldWithSurname = classOfPerson.getDeclaredField("surname");
+            Method forSettingNumber = classOfClient.getDeclaredMethod("setClientNumber", int.class);
+
+            secondClient = constructorForClient.newInstance("John","Kowalsky",3,LiteratureGenre.SCIFI);
+
+            fieldWithSurname.setAccessible(true);
+            fieldWithSurname.set(secondClient, "Bigeye");
+            forSettingNumber.invoke(secondClient, 10);
+        } catch (ClassNotFoundException | NoSuchFieldException | NoSuchMethodException | InstantiationException | IllegalAccessException |
+                 InvocationTargetException e) {
+            throw new RuntimeException(e);
+        }
 
         //-------------------
 
-        int i;
         Library onlyLibrary = new Library();
 
-        for(i=0; i<employeesForLibrary.size();i++) {
-            onlyLibrary.addEmployeeToList(employeesForLibrary.get(i));
-        }
-
-        for(i=0; i<booksForLibrary.size();i++) {
-            onlyLibrary.addBookToList(booksForLibrary.get(i));
-        }
-
-        for(i=0; i<magazinesForLibrary.size();i++) {
-            onlyLibrary.addMagazineToList(magazinesForLibrary.get(i));
-        }
+        employeesForLibrary.forEach(em -> onlyLibrary.addEmployeeToList(em));
+        booksForLibrary.forEach(b -> onlyLibrary.addBookToList(b));
+        magazinesForLibrary.forEach(m -> onlyLibrary.addMagazineToList(m));
 
         //---------------------
         LOGGER.info("\n===================\n");
